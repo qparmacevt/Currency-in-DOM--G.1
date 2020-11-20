@@ -8,9 +8,29 @@
     let answer2 = await fetch(URL2);
     answer2 = await answer2.json();
 
-    console.log(answer1);
-    console.log(answer2);
-    console.log(answer2[0].cc);
+
+    let countries = answer1;
+    let rates = answer2;
+
+ 
+    for(let item of countries){
+
+        let cc = item.currencies[0].code;
+
+        for(let oneRate of rates){
+            if(oneRate.cc == cc){
+                item.rate = oneRate.rate;
+                item.exchangedate = oneRate.exchangedate;
+                break;
+            }
+        }
+    }
+
+    countries = countries.filter(item => item.rate);
+
+
+  
+  /*  console.log(answer2[0].cc);
 
     let validCountries = answer1;
 
@@ -18,7 +38,7 @@
 
     for(let i=0; i<validCountries.length; i++){
 
-        if(answer1[i].currencies.code in answer2) {
+        if(answer1[i].currencies[0].code in answer2) {
             validCountries = validCountries[i].push(answer2[i].exchangedate);
         }
 
@@ -35,6 +55,6 @@
     console.log(answer1);
 
     let countryCard = document.querySelector('#special');
-    countryCard.innerHTML = answer1.join(' ');
+    countryCard.innerHTML = answer1.join(' ');*/
 
 })()
