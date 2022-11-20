@@ -1,6 +1,6 @@
 (async () => {
 
-    let URL1 = 'https://restcountries.eu/rest/v2/all';
+    let URL1 = 'https://restcountries.com/v2/all';
     let answer1 = await fetch(URL1);
     answer1 = await answer1.json();
 
